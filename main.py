@@ -60,7 +60,7 @@ def _replace_references(input_file_path, output_file_path, references):
             reference = reference_dict['reference']
             body = re.sub(
                 '{}.*id="{}"\s*/>{}'.format(reference_number, anchor, re.escape(reference)),
-                '{}. <div id="{}" />{}'.format(reference_number_new, anchor, reference),
+                '{}. <div id="#{}" />{}'.format(reference_number_new, anchor, reference),
                 body
             )
 
