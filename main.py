@@ -56,14 +56,15 @@ def _replace_references(input_file_path, output_file_path, references):
             body
         )
 
-        reference = reference_dict['reference']
-        body = re.sub(
-            '{}.*id="{}"\s*/>{}'.format(reference_number, anchor, re.escape(reference)),
-            '{}. <div id="{}" />{}'.format(reference_number_new, anchor, reference),
-            body
-        )
+        if 'reference' in reference_dict:
+            reference = reference_dict['reference']
+            body = re.sub(
+                '{}.*id="{}"\s*/>{}'.format(reference_number, anchor, re.escape(reference)),
+                '{}. <div id="{}" />{}'.format(reference_number_new, anchor, reference),
+                body
+            )
 
-        reference_number_new += 1
+            reference_number_new += 1
 
     with open(output_file_path, 'w') as output_file:
         output_file.write(body)
